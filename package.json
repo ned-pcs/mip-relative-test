@@ -1,0 +1,14 @@
+{
+    "urls": [
+        [
+            "mip_test.py",
+            "mip_test.py"
+        ],
+        [
+            "mip_test/mip_test.py",
+            "mip_test/mip_test.py"
+        ]
+    ],
+    "deps": [],
+    "version": "0.1.1"
+}
