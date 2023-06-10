@@ -1,5 +1,6 @@
 # MicroPython package installer
 # MIT license; Copyright (c) 2022 Jim Mussared
+# Modified by Ned Konz to allow relative URLs
 
 import urequests as requests
 import sys
@@ -64,6 +65,12 @@ def _check_exists(path, short_hash):
 
 
 def _rewrite_url(url, branch=None, package_json_url=None):
+    # rewrite relative URLs as absolute URLs
+    if not _is_url(url):
+        if not package_json_url:
+            raise ValueError("No package.json URL specified")
+        url = package_json_url.rsplit("/", 1)[0] + "/" + url
+    # now rewrite github: URLs as raw.githubusercontent.com URLs
     if url.startswith("github:"):
         if not branch:
             branch = "HEAD"
@@ -78,12 +85,6 @@ def _rewrite_url(url, branch=None, package_json_url=None):
             + "/"
             + "/".join(url[2:])
         )
-        return url
-    # rewrite relative URLs as absolute URLs
-    if not _is_url(url):
-        if not package_json_url:
-            raise ValueError("No package.json URL specified")
-        url = package_json_url.rsplit("/", 1)[0] + "/" + url
     return url
 
 
