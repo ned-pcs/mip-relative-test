@@ -32,10 +32,6 @@ def ls_test_files():
 
 rm_test_files()
 
+# Load the modified mip module from the local mip_src directory
 sys.path[0] = f'{PACKAGE_DIR}/mip_src'
 import mip
-
-try:
-    import urequests
-except:
-    mip.install('urequests')
