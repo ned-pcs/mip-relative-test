@@ -2,11 +2,11 @@
     "urls": [
         [
             "mip_test.py",
-            "mip_test.py"
+            "data/mip_test.py"
         ],
         [
             "mip_test/mip_test.py",
-            "mip_test/mip_test.py"
+            "data/mip_test/mip_test.py"
         ]
     ],
     "deps": [],
